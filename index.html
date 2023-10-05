@@ -4,12 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لعبة Hangman</title>
+  <meta name="description" content="Hangman Game, website, gaming, JavaScript">
+  <title>Hangman Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-
+  <header>
+    <h1>Hangman Game</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Play Game</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    <section class="game-info">
+      <h2>Game Information</h2>
+      <p>Word From: <span class="word"></span></p>
+    </section>
+    <hr>
+    <section class="row">
+      <div class="hangman-draw">
+        <div class="the-draw">
+          <div class="the-stand"></div>
+          <div class="the-hang"></div>
+          <div class="the-rope"></div>
+          <div class="the-man">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="hands"></div>
+            <div class="legs"></div>
+          </div>
+        </div>
+      </div>
+      <div class="letters"></div>
+    </section>
+    <hr>
+    <section class="letters-guess"></section>
+  </main>
+  <footer>
+    <p>Muhammad Nabih © 2023 Hangman Game</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 

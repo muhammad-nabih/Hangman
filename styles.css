@@ -1,0 +1,250 @@
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Global Variables */
+:root {
+  --main-size: 0.25rem;
+  --main-color: #fff2f2;
+  --hang-man-color: gray
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111111;
+  color: var(--main-color);
+}
+
+ul,
+li,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Navigation Styles */
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 10px;
+  background: #013952;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+ul li {
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  padding: inherit;
+  border-radius: inherit;
+}
+
+ul li:hover {
+  background-color: #02587f;
+}
+
+/* Container Styles */
+.container {
+  margin: 20px auto;
+  width: 80%;
+}
+
+.row {
+  display: flex;
+}
+
+/* Divider Styles */
+hr {
+  border: 1px solid #eee;
+}
+
+/* Game Info Styles */
+.game-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+}
+
+.game-info .game-name {
+  flex: 1;
+}
+
+.game-info .category {
+  flex: 1;
+  text-align: right;
+}
+
+.game-info span {
+  text-transform: capitalize;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+/* Hangman Draw Styles */
+.hangman-draw {
+  flex: 1;
+  background-color: #013952;
+  padding: 20px;
+  height: 320px;
+}
+
+.hangman-draw .the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: var(--main-size) solid var(--main-color);
+  position: relative;
+  margin: auto;
+}
+
+/* Hangman Stand Styles */
+.the-stand {
+  content: '';
+  position: absolute;
+  width: var(--main-size);
+  background: var(--main-color);
+  height: 100%;
+  left: 50%;
+  transform: translateX(calc(var(--main-size) / 2 * -1));
+}
+
+/* Hangman Hang Styles */
+.the-hang::before,
+.the-hang::after {
+  content: '';
+  position: absolute;
+  background-color: var(--main-color);
+  top: 10%;
+}
+
+.the-hang::before {
+  height: var(--main-size);
+  width: 100px;
+  left: 57%;
+}
+
+.the-hang::after {
+  height: 40px;
+  width: var(--main-size);
+  left: 217%;
+}
+
+/* Other Hangman Parts (Add Styles as Needed) */
+.the-rope {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  position: absolute;
+  left: 100%;
+  transform: translate(60%, -26%);
+  top: 30%;
+  border: dashed var(--main-size) var(--main-color);
+  box-shadow: 0px 1px 10px 1px #191919;
+}
+
+
+.the-man {}
+
+.head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid var(--hang-man-color) var(--main-size);
+  position: absolute;
+  left: 107px;
+  top: 75px;
+}
+
+.body {
+  position: absolute;
+  width: var(--main-size);
+  height: 34%;
+  background-color: var(--hang-man-color);
+  top: 124px;
+  left: 217%;
+}
+
+
+
+.hands::before,
+.hands::after {
+  content: '';
+  position: absolute;
+  width: var(--main-size);
+  height: 60px;
+  background: var(--hang-man-color);
+  top: 40%;
+}
+
+.hands::before {
+  transform: rotate(42deg);
+  left: 250%;
+}
+
+.hands::after {
+  transform: rotate(-42deg);
+  left: 182%;
+}
+
+
+
+
+
+.legs::before,
+.legs::after {
+  content: '';
+  position: absolute;
+  width: var(--main-size);
+  height: 60px;
+  background: var(--hang-man-color);
+  top: 75%;
+}
+
+.legs::after {
+  transform: rotate(-40deg);
+  left: 250%;
+}
+
+.legs::before {
+  transform: rotate(40deg);
+  left: 185%;
+}
+
+
+
+
+/* Letters Styles (Add Styles as Needed) */
+.letters {}
+
+.letters-guess {}
+
+/* Footer Styles */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+footer p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
