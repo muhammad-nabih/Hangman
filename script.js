@@ -3,6 +3,9 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz";
 const uppercaseAlphabetArray = Array.from(alphabet.toUpperCase());
 const lettersContainer = document.querySelector(".letters");
 
+// Counter Fill Span
+let countSpanFill = 0;
+
 // Create letter elements and add them to the user interface
 function createLettersAndAddToUI() {
   uppercaseAlphabetArray.forEach((letter) => {
@@ -48,9 +51,12 @@ function initializeGame() {
     chosenWordLowerCase.forEach((letter) => {
       const letterElement = document.createElement("span");
       // Add a class for space to handle words with spaces
-      letter === " "
-        ? letterElement.classList.add("with-space")
-        : letterElement;
+
+      if (letter === " ") {
+        letterElement.classList.add("with-space");
+        countSpanFill++;
+      }
+
       wordDisplayContainer.append(letterElement);
     });
 
@@ -84,8 +90,6 @@ function initializeGame() {
       }
     }
 
-    let countSpanFill = 0;
-
     // Handle clicking on letters
     document.addEventListener("click", (e) => {
       let isLetterCorrect = false;
@@ -109,12 +113,12 @@ function initializeGame() {
         if (!isLetterCorrect) {
           wrongCounter++;
           theDraw.classList.add(`wrong-${wrongCounter}`);
-          const fail = document.querySelector("#fail")
-          fail.currentTime=0
-            fail.play();
+          const fail = document.querySelector("#fail");
+          fail.currentTime = 0;
+          fail.play();
           checkLoss();
         } else {
-          const success = document.querySelector("#success")
+          const success = document.querySelector("#success");
           success.currentTime = 0;
           success.play();
           if (countSpanFill === letterGuessLength) {

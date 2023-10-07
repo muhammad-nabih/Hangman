@@ -1,35 +1,31 @@
 {
   "countries": [
     "Egypt",
-    "Saudi Arabia",
+    "Saudi",
     "Iraq",
     "Jordan",
-    "Lebanon",
+    "Lebnan",
     "Syria",
     "Tunisia",
     "Morocco",
-    "Kuwait",
-    "UAE"
+    "phalastine"
   ],
-  "people": [
-    "Albert Einstein",
-    "Nelson Mandela",
-    "Oprah Winfrey",
-    "Leonardo da Vinci",
-    "Malala Yousafzai",
-    "Steve Jobs",
-    "Marie Curie",
-    "Mahatma Gandhi",
-    "Amelia Earhart",
-    "Elon Musk"
+  "player": [
+    "Messi",
+    "Ronaldo",
+    "Maradona",
+    "Beckham",
+    "Salah",
+    "Banzema",
+    "Cristiano Ronaldo"
   ],
-  "movies": [
-    "Godfather",
-    "Pulp Fiction",
-    "The Dark Knight",
-    "Forrest Gump",
-    "The Matrix",
-    "Inception"
+  "anime": [
+    "Naruto",
+    "Death Note",
+    "Attack on Titan",
+    "One piece",
+    "Black Clover",
+    "Bleach"
   ],
   "programming": [
     "JavaScript",
