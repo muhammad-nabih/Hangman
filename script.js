@@ -109,10 +109,14 @@ function initializeGame() {
         if (!isLetterCorrect) {
           wrongCounter++;
           theDraw.classList.add(`wrong-${wrongCounter}`);
-          document.querySelector("#fail").play();
+          const fail = document.querySelector("#fail")
+          fail.currentTime=0
+            fail.play();
           checkLoss();
         } else {
-          document.querySelector("#success").play();
+          const success = document.querySelector("#success")
+          success.currentTime = 0;
+          success.play();
           if (countSpanFill === letterGuessLength) {
             checkWin();
           }
