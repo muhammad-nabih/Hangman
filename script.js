@@ -20,116 +20,120 @@ function createLettersAndAddToUI() {
 // Call the function to create and add letter elements to the UI
 createLettersAndAddToUI();
 
-// Array of words and categories
-const wordCategories = {
-  countries: [
-    "Egypt",
-    "Saudi Arabia",
-    "Iraq",
-    "Jordan",
-    "Lebanon",
-    "Syria",
-    "Tunisia",
-    "Morocco",
-    "Kuwait",
-    "UAE",
-  ],
-  people: [
-    "Albert Einstein",
-    "Nelson Mandela",
-    "Oprah Winfrey",
-    "Leonardo da Vinci",
-    "Malala Yousafzai",
-    "Steve Jobs",
-    "Marie Curie",
-    "Mahatma Gandhi",
-    "Amelia Earhart",
-    "Elon Musk",
-  ],
-  movies: [
-    "Godfather",
-    "Pulp Fiction",
-    "The Dark Knight",
-    "Forrest Gump",
-    "The Matrix",
-    "Inception",
-  ],
-  programming: [
-    "JavaScript",
-    "Python",
-    "Java",
-    "Ruby",
-    "Swift",
-    "PHP",
-    "Csharp",
-    "Go",
-    "Rust",
-  ],
-};
+function initializeGame() {
+  const dataFetch = async () => {
+    const response = await fetch("data.json");
+    const wordCategories = await response.json();
 
-// Randomly select a word category
-const categoryKeys = Object.keys(wordCategories);
-const randomCategoryIndex = Math.floor(Math.random() * categoryKeys.length);
-const randomCategoryKey = categoryKeys[randomCategoryIndex];
+    // Randomly select a word category
+    const categoryKeys = Object.keys(wordCategories);
+    const randomCategoryIndex = Math.floor(Math.random() * categoryKeys.length);
+    const randomCategoryKey = categoryKeys[randomCategoryIndex];
 
-// Display the selected category
-const categoryDisplayElement = document.querySelector("span.word");
-categoryDisplayElement.innerHTML = randomCategoryKey;
+    // Display the selected category
+    const categoryDisplayElement = document.querySelector("span.word");
+    categoryDisplayElement.innerHTML = randomCategoryKey;
 
-// Select a random word from the chosen category
-const wordsInCategory = wordCategories[randomCategoryKey];
-const randomWordIndex = Math.floor(Math.random() * wordsInCategory.length);
-const chosenWord = wordsInCategory[randomWordIndex];
+    // Select a random word from the chosen category
+    const wordsInCategory = wordCategories[randomCategoryKey];
+    const randomWordIndex = Math.floor(Math.random() * wordsInCategory.length);
+    const chosenWord = wordsInCategory[randomWordIndex];
 
-// Convert the chosen word to lowercase and split it into an array of letters
-const chosenWordLowerCase = Array.from(chosenWord.toLowerCase());
+    // Convert the chosen word to lowercase and split it into an array of letters
+    const chosenWordLowerCase = Array.from(chosenWord.toLowerCase());
 
-// Create letter elements for the word display
-const wordDisplayContainer = document.querySelector(".letters-guess");
-chosenWordLowerCase.forEach((letter) => {
-  const letterElement = document.createElement("span");
-  // Add a class for space to handle words with spaces
-  letter === " " ? letterElement.classList.add("with-space") : letterElement;
-  wordDisplayContainer.append(letterElement);
-});
+    // Create letter elements for the word display
+    const wordDisplayContainer = document.querySelector(".letters-guess");
 
-// Select guess spans
-let guessLetterElements = document.querySelectorAll(".letters-guess span");
-
-// Set the choose state
-let isLetterCorrect = false;
-
-// Handle clicking on letters
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("letter-container") && !isLetterCorrect) {
-    // Mark the letter as clicked
-    e.target.classList.add("clicked");
-
-    // Get the clicked letter
-    const clickedLetter = e.target.textContent.toLowerCase();
-
-    // Check if the clicked letter exists in the chosen word
-    chosenWordLowerCase.forEach((wordLetter, wordIndex) => {
-      
-      // If The Clicked Letter Equal To One Of The Chosen Letter
-      if (wordLetter.includes(clickedLetter)) {
-     
-        //  Update The Status Of The Letter Correction
-        isLetterCorrect = true;
-
-        // Update the display with the clicked letter
-        guessLetterElements.forEach((element, index) => {
-          if (wordIndex === index) {
-            element.textContent = clickedLetter;
-          }
-        });
-      }
+    chosenWordLowerCase.forEach((letter) => {
+      const letterElement = document.createElement("span");
+      // Add a class for space to handle words with spaces
+      letter === " "
+        ? letterElement.classList.add("with-space")
+        : letterElement;
+      wordDisplayContainer.append(letterElement);
     });
 
-    // Log the current status
-    console.log(isLetterCorrect);
+    // Select guess spans
+    let guessLetterElements = document.querySelectorAll(".letters-guess span");
 
-    // Reset the choose state for the next click
-    isLetterCorrect = false;
-  }
-});
+    // Wrong Counter
+    let wrongCounter = 0;
+
+    // Select The Draw Element
+    const theDraw = document.querySelector(".hangman-draw");
+
+    const letterGuessLength = guessLetterElements.length;
+
+    // Check for win condition
+    function checkWin() {
+      const winPopup = document.querySelector("#win-popup");
+      const winPopupMessage = winPopup.querySelector("p");
+      winPopupMessage.innerHTML = "Congratulations! You won!🏆🎊🥳";
+      winPopup.style.display = "flex";
+    }
+
+    // Check for loss condition
+    function checkLoss() {
+      if (wrongCounter === 8) {
+        lettersContainer.classList.add("over");
+        const lossPopup = document.querySelector("#loss-popup");
+        const lossPopupMessage = lossPopup.querySelector("p");
+        lossPopupMessage.innerHTML = "Sorry😔, you lost😓. Try again🔁.";
+        lossPopup.style.display = "flex";
+      }
+    }
+
+    let countSpanFill = 0;
+
+    // Handle clicking on letters
+    document.addEventListener("click", (e) => {
+      let isLetterCorrect = false;
+
+      if (e.target.classList.contains("letter-container") && !isLetterCorrect) {
+        e.target.classList.add("clicked");
+        const clickedLetter = e.target.textContent.toLowerCase();
+
+        chosenWordLowerCase.forEach((wordLetter, wordIndex) => {
+          if (wordLetter.includes(clickedLetter)) {
+            isLetterCorrect = true;
+            guessLetterElements.forEach((element, index) => {
+              if (wordIndex === index) {
+                element.textContent = clickedLetter;
+                return countSpanFill++;
+              }
+            });
+          }
+        });
+
+        if (!isLetterCorrect) {
+          wrongCounter++;
+          theDraw.classList.add(`wrong-${wrongCounter}`);
+          document.querySelector("#fail").play();
+          checkLoss();
+        } else {
+          document.querySelector("#success").play();
+          if (countSpanFill === letterGuessLength) {
+            checkWin();
+          }
+        }
+      }
+    });
+  };
+  return dataFetch();
+}
+
+// Initialize the game
+initializeGame();
+
+// Function to reload the page when clicking on "Play Again" button
+function reloadPage(buttonId) {
+  const button = document.querySelector(`#${buttonId}`);
+  button.addEventListener("click", () => {
+    location.reload();
+  });
+}
+
+// Reload the page when clicking on the "Play Again" buttons
+reloadPage("play-again-win");
+reloadPage("play-again-loss");

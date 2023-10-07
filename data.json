@@ -1,0 +1,45 @@
+{
+  "countries": [
+    "Egypt",
+    "Saudi Arabia",
+    "Iraq",
+    "Jordan",
+    "Lebanon",
+    "Syria",
+    "Tunisia",
+    "Morocco",
+    "Kuwait",
+    "UAE"
+  ],
+  "people": [
+    "Albert Einstein",
+    "Nelson Mandela",
+    "Oprah Winfrey",
+    "Leonardo da Vinci",
+    "Malala Yousafzai",
+    "Steve Jobs",
+    "Marie Curie",
+    "Mahatma Gandhi",
+    "Amelia Earhart",
+    "Elon Musk"
+  ],
+  "movies": [
+    "Godfather",
+    "Pulp Fiction",
+    "The Dark Knight",
+    "Forrest Gump",
+    "The Matrix",
+    "Inception"
+  ],
+  "programming": [
+    "JavaScript",
+    "Python",
+    "Java",
+    "Ruby",
+    "Swift",
+    "PHP",
+    "Csharp",
+    "Go",
+    "Rust"
+  ]
+}

@@ -4,6 +4,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+html{
+  color-scheme: dark
+  ;
+}
 
 /* Global Variables */
 :root {
@@ -17,6 +21,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #111111;
   color: var(--main-color);
+
 }
 
 ul,
@@ -42,22 +47,25 @@ ul {
   align-items: center;
   width: 90%;
   padding: 10px;
-  background: #013952;
+  background: #4476fe;
   margin: 10px auto;
   border-radius: 10px;
+
+}
+
+ul {
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 ul li {
   flex: 1;
   text-align: center;
-  transition: background-color 0.3s;
-  cursor: pointer;
-  padding: inherit;
-  border-radius: inherit;
+
 }
 
-ul li:hover {
-  background-color: #02587f;
+ul:hover {
+  background-color: #082983;
 }
 
 /* Container Styles */
@@ -70,6 +78,7 @@ ul li:hover {
   display: flex;
   justify-content: space-between;
   gap: 20%;
+  position: relative;
 }
 
 @media (max-width: 900px) {
@@ -79,7 +88,6 @@ ul li:hover {
     align-items: center;
     flex-direction: column;
   }
-
 }
 
 /* Divider Styles */
@@ -107,7 +115,8 @@ hr:first-of-type {
 
 .game-info span {
   text-transform: capitalize;
-  color: #e91e63;
+  color: #4476fe;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -171,7 +180,6 @@ hr:first-of-type {
   box-shadow: 0px 1px 10px 1px #191919;
 }
 
-
 .head {
   width: 50px;
   height: 50px;
@@ -190,8 +198,6 @@ hr:first-of-type {
   top: 124px;
   left: 217%;
 }
-
-
 
 .hands::before,
 .hands::after {
@@ -214,10 +220,6 @@ hr:first-of-type {
   left: 182%;
 }
 
-
-
-
-
 .legs::before,
 .legs::after {
   content: '';
@@ -238,9 +240,6 @@ hr:first-of-type {
   transform: rotate(40deg);
   left: 185%;
 }
-
-
-
 
 /* Letters Styles (Add Styles as Needed) */
 .letters {
@@ -282,17 +281,13 @@ hr:first-of-type {
   opacity: .8;
 }
 
-
-
 .letters-guess {
   width: 100%;
   height: 80px;
-  /* background-color: #2655d7; */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  ;
 }
 
 .letters-guess span {
@@ -311,8 +306,6 @@ hr:first-of-type {
 }
 
 .letters-guess span.with-space {
-
-
   position: relative;
   min-width: 4ch;
   min-height: 4ch;
@@ -329,7 +322,6 @@ hr:first-of-type {
   transform: translate(-50%, -50%);
 }
 
-
 /* Footer Styles */
 footer {
   display: flex;
@@ -344,11 +336,84 @@ footer p {
   font-weight: bold;
 }
 
-
 /* Control Of this Class By Javascript */
-
 .clicked {
   pointer-events: none;
   background-color: #222;
   opacity: .2;
+}
+
+/* Initial state: hide all hangman parts */
+.hangman-draw .the-draw,
+.hangman-draw .the-stand,
+.hangman-draw .the-hang,
+.hangman-draw .the-rope,
+.hangman-draw .head,
+.hangman-draw .hands,
+.hangman-draw .body,
+.hangman-draw .legs {
+  display: none;
+}
+
+/* Show hangman parts based on wrong attempts */
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
+}
+
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+
+.hangman-draw.wrong-4 .the-rope {
+  display: block;
+}
+
+.hangman-draw.wrong-5 .head {
+  display: block;
+}
+
+.hangman-draw.wrong-6 .hands {
+  display: block;
+}
+
+.hangman-draw.wrong-7 .body {
+  display: block;
+}
+
+.hangman-draw.wrong-8 .legs {
+  display: block;
+}
+
+/* Adding Class Over To Mute Event On Letters */
+.letters.over {
+  pointer-events: none;
+}
+
+/* Popup  */
+.popup {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  cursor: pointer;
+  border: 2px solid var(--hang-man-color);
+  background-color: #000;
+  padding: 1.25rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  user-select: none;
+  display: none;
 }
