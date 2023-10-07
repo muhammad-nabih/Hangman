@@ -126,7 +126,7 @@ hr:first-of-type {
 .hangman-draw {
   flex: 1;
   padding: 20px;
-  height: 320px;
+  min-height: 320px;
 }
 
 .hangman-draw .the-draw {
@@ -420,7 +420,19 @@ footer p {
   border-radius: 10px;
   text-align: center;
   user-select: none;
+  opacity: .9;
   display: none;
+
+}
+
+.popup .chosen-word-popup {
+  margin: 7px auto;
+  display: block;
+  background: #092778;
+  padding: 8px 10px;
+  border: 1px solid #f1f5ff;
+  width: 90%;
+  border-radius: inherit;
 }
 
 

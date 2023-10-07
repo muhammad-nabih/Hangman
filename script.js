@@ -75,6 +75,7 @@ function initializeGame() {
     function checkWin() {
       const winPopup = document.querySelector("#win-popup");
       const winPopupMessage = winPopup.querySelector("p");
+
       winPopupMessage.innerHTML = "Congratulations! You won!🏆🎊🥳";
       winPopup.style.display = "flex";
     }
@@ -85,7 +86,12 @@ function initializeGame() {
         lettersContainer.classList.add("over");
         const lossPopup = document.querySelector("#loss-popup");
         const lossPopupMessage = lossPopup.querySelector("p");
-        lossPopupMessage.innerHTML = "Sorry😔, you lost😓. Try again🔁.";
+        const wordChosenElement = document.querySelector(
+          "span.chosen-word-popup"
+        );
+        wordChosenElement.innerHTML = "The Word is => " + chosenWord.toUpperCase();
+        lossPopupMessage.innerHTML = `Sorry😔, you lost😓 . Try again🔁`;
+
         lossPopup.style.display = "flex";
       }
     }
