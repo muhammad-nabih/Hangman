@@ -2,7 +2,7 @@
 
 Welcome to the Hangman Game repository! This project is a simple implementation of the classic Hangman game using HTML, CSS, and JavaScript.
 
-![Hangman Game](screenshot.png)
+![Hangman Game](Hangman-Game.png)
 
 ## How to Play
 
