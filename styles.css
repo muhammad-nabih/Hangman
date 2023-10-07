@@ -63,16 +63,28 @@ ul li:hover {
 /* Container Styles */
 .container {
   margin: 20px auto;
-  width: 80%;
+  width: 90%;
 }
 
 .row {
   display: flex;
+  justify-content: space-between;
+  gap: 20%;
+}
+
+@media (max-width: 900px) {
+  .row {
+    margin: 10px auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
 }
 
 /* Divider Styles */
-hr {
-  border: 1px solid #eee;
+hr:first-of-type {
+  border: 2px solid #02587f;
 }
 
 /* Game Info Styles */
@@ -81,6 +93,7 @@ hr {
   align-items: center;
   gap: 10px;
   padding: 5px 10px;
+  justify-content: space-around;
 }
 
 .game-info .game-name {
@@ -101,7 +114,6 @@ hr {
 /* Hangman Draw Styles */
 .hangman-draw {
   flex: 1;
-  background-color: #013952;
   padding: 20px;
   height: 320px;
 }
@@ -160,8 +172,6 @@ hr {
 }
 
 
-.the-man {}
-
 .head {
   width: 50px;
   height: 50px;
@@ -191,6 +201,7 @@ hr {
   height: 60px;
   background: var(--hang-man-color);
   top: 40%;
+  border-radius: 10px;
 }
 
 .hands::before {
@@ -215,6 +226,7 @@ hr {
   height: 60px;
   background: var(--hang-man-color);
   top: 75%;
+  border-radius: 10px;
 }
 
 .legs::after {
@@ -231,9 +243,92 @@ hr {
 
 
 /* Letters Styles (Add Styles as Needed) */
-.letters {}
+.letters {
+  flex: 1;
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap;
+}
 
-.letters-guess {}
+.letter-container {
+  cursor: pointer;
+  width: 4ch;
+  height: 4ch;
+  border: 2px solid var(--hang-man-color);
+  background-color: #2655d7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: .625rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  border-radius: 10px;
+  text-shadow: -1px 6px 3px #000000;
+  box-shadow: inset 0px 5px 20px 2px black;
+  transition: .3s;
+  user-select: none;
+}
+
+.letter-container:hover {
+  color: gray;
+}
+
+.letter-container:active {
+  transform: scale(1.2);
+  opacity: .8;
+}
+
+
+
+.letters-guess {
+  width: 100%;
+  height: 80px;
+  /* background-color: #2655d7; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  ;
+}
+
+.letters-guess span {
+  min-width: 4ch;
+  min-height: 4ch;
+  border-radius: 9px;
+  border-bottom: 2px solid #02587f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.letters-guess span.with-space {
+
+
+  position: relative;
+  min-width: 4ch;
+  min-height: 4ch;
+}
+
+.letters-guess span.with-space::before {
+  content: '';
+  width: 80%;
+  height: var(--main-size);
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 /* Footer Styles */
 footer {
@@ -247,4 +342,13 @@ footer {
 footer p {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+
+/* Control Of this Class By Javascript */
+
+.clicked {
+  pointer-events: none;
+  background-color: #222;
+  opacity: .2;
 }
