@@ -95,7 +95,7 @@ async function initializeGame() {
         "span.chosen-word-popup"
       );
       wordChosenElement.textContent =
-        "The Word is => " + chosenWord.toUpperCase();
+        "The Word is: " + chosenWord.toUpperCase();
       lossPopupMessage.textContent = `Sorry😔, you lost😓 . Try again🔁`;
       lossPopup.style.display = "flex";
     }

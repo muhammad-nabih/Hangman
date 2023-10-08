@@ -405,7 +405,7 @@ footer p {
   height: auto;
   align-items: center;
   justify-content: center;
-  width: fit-content;
+  width: 70%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -447,5 +447,6 @@ footer p {
 
   .popup {
     font-size: .8rem;
+    width: 80%;
   }
 }
